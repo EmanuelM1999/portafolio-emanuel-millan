@@ -41,7 +41,7 @@ export default function Hero() {
           gap: '3rem',
           alignItems: 'center'
         }} className="hero-grid">
-          
+
           {/* Left Column: Text & CTAs */}
           <div>
             <div className="section-badge animate-float">
@@ -89,10 +89,12 @@ export default function Hero() {
 
             {/* Action Buttons */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
+              {/*
               <a href="#projects" className="btn btn-primary">
                 <span>Ver Mis Proyectos</span>
                 <ArrowRight size={18} />
               </a>
+              */}
 
               <a href="#contact" className="btn btn-secondary">
                 <Mail size={18} />
