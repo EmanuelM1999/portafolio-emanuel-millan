@@ -20,6 +20,7 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <div
+      className="modal-overlay"
       style={{
         position: 'fixed',
         inset: 0,
@@ -35,7 +36,7 @@ export default function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <div
-        className="glass-card"
+        className="glass-card modal-content-card"
         style={{
           maxWidth: '800px',
           width: '100%',
@@ -51,6 +52,7 @@ export default function ProjectModal({ project, onClose }) {
         {/* Close Button */}
         <button
           onClick={onClose}
+          className="modal-close-btn"
           style={{
             position: 'absolute',
             top: '1.2rem',
@@ -66,6 +68,7 @@ export default function ProjectModal({ project, onClose }) {
             justifyContent: 'center',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
+            zIndex: 10
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)';
@@ -81,7 +84,7 @@ export default function ProjectModal({ project, onClose }) {
         </button>
 
         {/* Project Image */}
-        <div style={{
+        <div className="modal-img-container" style={{
           borderRadius: '12px',
           overflow: 'hidden',
           marginBottom: '1.5rem',
@@ -102,7 +105,7 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Category Badge & Title */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
           <span className="tag-pill" style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             {project.category}
           </span>
@@ -124,12 +127,12 @@ export default function ProjectModal({ project, onClose }) {
           )}
         </div>
 
-        <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginBottom: '1.2rem' }}>
+        <h3 className="modal-title" style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginBottom: '1.2rem' }}>
           {project.title}
         </h3>
 
         {/* Full description */}
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: 1.7, marginBottom: '1.8rem' }}>
+        <p className="modal-desc" style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: 1.7, marginBottom: '1.8rem' }}>
           {project.fullDescription}
         </p>
 
@@ -164,12 +167,12 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '1.2rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="modal-actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '1.2rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-primary"
+            className="btn btn-primary modal-action-btn"
           >
             <ExternalLink size={18} />
             <span>Ver Demo En Vivo</span>
@@ -179,13 +182,46 @@ export default function ProjectModal({ project, onClose }) {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-secondary"
+            className="btn btn-secondary modal-action-btn"
           >
             <GithubIcon size={18} />
             <span>Código en GitHub</span>
           </a>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .modal-overlay {
+            padding: 0.8rem !important;
+          }
+          .modal-content-card {
+            padding: 1.2rem !important;
+            max-height: 94vh !important;
+          }
+          .modal-img-container {
+            height: 180px !important;
+            margin-bottom: 1rem !important;
+          }
+          .modal-title {
+            font-size: 1.4rem !important;
+            margin-bottom: 0.8rem !important;
+          }
+          .modal-desc {
+            font-size: 0.92rem !important;
+            margin-bottom: 1.2rem !important;
+          }
+          .modal-close-btn {
+            top: 0.8rem !important;
+            right: 0.8rem !important;
+            width: 32px !important;
+            height: 32px !important;
+          }
+          .modal-action-btn {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

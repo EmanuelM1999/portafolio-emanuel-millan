@@ -33,7 +33,7 @@ export default function Hero() {
   }, [currentText, isDeleting, roleIndex]);
 
   return (
-    <section id="hero" className="section" style={{ paddingTop: '9rem', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <section id="hero" className="section hero-section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
       <div className="container">
         <div style={{
           display: 'grid',
@@ -49,17 +49,17 @@ export default function Hero() {
               <span>Bienvenido a mi portafolio</span>
             </div>
 
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '1rem' }}>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '1rem' }}>
               Hola, soy <br />
               <span className="gradient-text">{personalInfo.name}</span>
             </h1>
 
             {/* Typewriter role */}
-            <div style={{
+            <div className="hero-role" style={{
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)',
               fontWeight: 700,
               color: 'var(--text-muted)',
               marginBottom: '1.5rem',
@@ -77,10 +77,10 @@ export default function Hero() {
               }}></span>
             </div>
 
-            <p style={{
-              fontSize: '1.1rem',
+            <p className="hero-subtitle" style={{
+              fontSize: '1.05rem',
               color: 'var(--text-muted)',
-              marginBottom: '2.2rem',
+              marginBottom: '2rem',
               maxWidth: '580px',
               lineHeight: 1.7
             }}>
@@ -88,15 +88,8 @@ export default function Hero() {
             </p>
 
             {/* Action Buttons */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
-              {/*
-              <a href="#projects" className="btn btn-primary">
-                <span>Ver Mis Proyectos</span>
-                <ArrowRight size={18} />
-              </a>
-              */}
-
-              <a href="#contact" className="btn btn-secondary">
+            <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
+              <a href="#contact" className="btn btn-secondary cta-btn">
                 <Mail size={18} />
                 <span>Contactar</span>
               </a>
@@ -105,7 +98,7 @@ export default function Hero() {
                 href={personalInfo.cvUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn-secondary"
+                className="btn btn-secondary cta-btn"
                 style={{ padding: '0.85rem 1.2rem' }}
                 title="Descargar Curriculum Vitae"
               >
@@ -115,7 +108,7 @@ export default function Hero() {
             </div>
 
             {/* Social Links */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+            <div className="hero-socials" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '0.85rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.05em', fontFamily: 'var(--font-mono)' }}>
                 Conecta conmigo:
               </span>
@@ -168,7 +161,7 @@ export default function Hero() {
 
           {/* Right Column: Visual Interactive Code Card */}
           <div className="hero-visual" style={{ position: 'relative' }}>
-            <div className="glass-card" style={{
+            <div className="glass-card hero-code-card" style={{
               padding: '1.5rem',
               position: 'relative',
               overflow: 'hidden',
@@ -189,7 +182,7 @@ export default function Hero() {
               </div>
 
               {/* Code snippet */}
-              <pre style={{
+              <pre className="code-pre" style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.85rem',
                 lineHeight: 1.7,
@@ -216,18 +209,18 @@ export default function Hero() {
         </div>
 
         {/* Stats Grid at Bottom of Hero */}
-        <div style={{
+        <div className="hero-stats-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: '1.5rem',
           marginTop: '5rem'
         }}>
           {personalInfo.stats.map((stat, idx) => (
-            <div key={idx} className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-              <div style={{ fontSize: '2.4rem', fontWeight: 900, fontFamily: 'var(--font-mono)', marginBottom: '0.3rem' }} className="gradient-text">
+            <div key={idx} className="glass-card stat-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 900, fontFamily: 'var(--font-mono)', marginBottom: '0.3rem' }} className="gradient-text stat-value">
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }} className="stat-label">
                 {stat.label}
               </div>
             </div>
@@ -236,12 +229,58 @@ export default function Hero() {
       </div>
 
       <style>{`
+        .hero-section {
+          padding-top: 9rem;
+        }
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
         @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-section {
+            padding-top: 6.5rem !important;
+          }
+          .hero-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+          .hero-stats-grid { marginTop: 3rem !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-section {
+            padding-top: 5.5rem !important;
+          }
+          .hero-title {
+            font-size: 1.85rem !important;
+          }
+          .hero-subtitle {
+            font-size: 0.95rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .hero-ctas {
+            flex-direction: column;
+            width: 100%;
+          }
+          .cta-btn {
+            width: 100%;
+          }
+          .hero-code-card {
+            padding: 1rem !important;
+          }
+          .code-pre {
+            font-size: 0.76rem !important;
+          }
+          .hero-stats-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.8rem !important;
+            margin-top: 2.5rem !important;
+          }
+          .stat-card {
+            padding: 1rem 0.6rem !important;
+          }
+          .stat-value {
+            font-size: 1.8rem !important;
+          }
+          .stat-label {
+            font-size: 0.78rem !important;
+          }
         }
       `}</style>
     </section>

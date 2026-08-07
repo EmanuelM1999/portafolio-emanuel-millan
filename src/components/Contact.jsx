@@ -60,7 +60,7 @@ export default function Contact() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             
             {/* Email Card with Copy button */}
-            <div className="glass-card" style={{ padding: '1.8rem' }}>
+            <div className="glass-card contact-card" style={{ padding: '1.8rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
                 <div style={{
                   width: '48px',
@@ -70,7 +70,8 @@ export default function Contact() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--primary-cyan)'
+                  color: 'var(--primary-cyan)',
+                  flexShrink: 0
                 }}>
                   <Mail size={24} />
                 </div>
@@ -78,7 +79,7 @@ export default function Contact() {
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
                     Correo Electrónico
                   </div>
-                  <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.05rem', wordBreak: 'break-all' }}>
+                  <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.02rem', wordBreak: 'break-all' }}>
                     {personalInfo.email}
                   </div>
                 </div>
@@ -87,7 +88,7 @@ export default function Contact() {
               <button
                 onClick={handleCopyEmail}
                 className="btn btn-secondary"
-                style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem' }}
+                style={{ width: '100%', padding: '0.65rem', fontSize: '0.85rem' }}
               >
                 {copiedEmail ? <Check size={16} color="#10b981" /> : <Copy size={16} />}
                 <span>{copiedEmail ? '¡Email Copiado!' : 'Copiar Email al Portapapeles'}</span>
@@ -95,7 +96,7 @@ export default function Contact() {
             </div>
 
             {/* Location & Status Card */}
-            <div className="glass-card" style={{ padding: '1.8rem' }}>
+            <div className="glass-card contact-card" style={{ padding: '1.8rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{
                   width: '48px',
@@ -105,7 +106,8 @@ export default function Contact() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--primary-purple)'
+                  color: 'var(--primary-purple)',
+                  flexShrink: 0
                 }}>
                   <MapPin size={24} />
                 </div>
@@ -113,7 +115,7 @@ export default function Contact() {
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
                     Ubicación & Disponibilidad
                   </div>
-                  <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.05rem' }}>
+                  <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.02rem' }}>
                     {personalInfo.location} (Remoto / Presencial)
                   </div>
                 </div>
@@ -121,17 +123,17 @@ export default function Contact() {
             </div>
 
             {/* Social Connect Card */}
-            <div className="glass-card" style={{ padding: '1.8rem' }}>
+            <div className="glass-card contact-card" style={{ padding: '1.8rem' }}>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#fff', marginBottom: '1rem' }}>
                 Redes Profesionales:
               </div>
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-secondary"
-                  style={{ flex: 1, padding: '0.6rem', fontSize: '0.85rem' }}
+                  style={{ flex: 1, minWidth: '120px', padding: '0.6rem', fontSize: '0.85rem' }}
                 >
                   <GithubIcon size={18} />
                   <span>GitHub</span>
@@ -141,7 +143,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-secondary"
-                  style={{ flex: 1, padding: '0.6rem', fontSize: '0.85rem' }}
+                  style={{ flex: 1, minWidth: '120px', padding: '0.6rem', fontSize: '0.85rem' }}
                 >
                   <LinkedinIcon size={18} />
                   <span>LinkedIn</span>
@@ -152,8 +154,8 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="glass-card" style={{ padding: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <div className="glass-card contact-form-card" style={{ padding: '2.5rem' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
               <MessageSquare size={20} color="var(--primary-cyan)" />
               <span>Enviarme un Mensaje Directo</span>
             </h3>
@@ -195,7 +197,7 @@ export default function Contact() {
                       background: 'rgba(255, 255, 255, 0.04)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       color: '#fff',
-                      fontSize: '0.95rem',
+                      fontSize: '1rem',
                       outline: 'none',
                       fontFamily: 'var(--font-main)',
                       transition: 'all 0.2s ease'
@@ -222,7 +224,7 @@ export default function Contact() {
                       background: 'rgba(255, 255, 255, 0.04)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       color: '#fff',
-                      fontSize: '0.95rem',
+                      fontSize: '1rem',
                       outline: 'none',
                       fontFamily: 'var(--font-main)',
                       transition: 'all 0.2s ease'
@@ -249,7 +251,7 @@ export default function Contact() {
                     background: 'rgba(255, 255, 255, 0.04)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     color: '#fff',
-                    fontSize: '0.95rem',
+                    fontSize: '1rem',
                     outline: 'none',
                     fontFamily: 'var(--font-main)',
                     transition: 'all 0.2s ease'
@@ -276,7 +278,7 @@ export default function Contact() {
                     background: 'rgba(255, 255, 255, 0.04)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     color: '#fff',
-                    fontSize: '0.95rem',
+                    fontSize: '1rem',
                     outline: 'none',
                     fontFamily: 'var(--font-main)',
                     resize: 'vertical',
@@ -304,8 +306,13 @@ export default function Contact() {
 
       <style>{`
         @media (max-width: 900px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .form-row { grid-template-columns: 1fr !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .form-row { grid-template-columns: 1fr !important; gap: 1.2rem !important; }
+        }
+        @media (max-width: 480px) {
+          .contact-card, .contact-form-card {
+            padding: 1.25rem !important;
+          }
         }
       `}</style>
     </section>

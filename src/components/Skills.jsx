@@ -29,7 +29,7 @@ export default function Skills() {
         </div>
 
         {/* Category selector tabs */}
-        <div style={{
+        <div className="skills-tabs-container no-scrollbar" style={{
           display: 'flex',
           justifyContent: 'center',
           gap: '0.8rem',
@@ -40,6 +40,7 @@ export default function Skills() {
             <button
               key={idx}
               onClick={() => setActiveCategory(idx)}
+              className="skills-tab-btn"
               style={{
                 padding: '0.7rem 1.4rem',
                 borderRadius: '12px',
@@ -50,6 +51,7 @@ export default function Skills() {
                 fontSize: '0.95rem',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap'
               }}
             >
               {cat.category}
@@ -58,7 +60,7 @@ export default function Skills() {
         </div>
 
         {/* Active Category Display */}
-        <div className="glass-card" style={{ padding: '2.5rem' }}>
+        <div className="glass-card skills-card" style={{ padding: '2.5rem' }}>
           <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
             <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: '0.4rem' }}>
               {skillsData[activeCategory].category}
@@ -68,7 +70,7 @@ export default function Skills() {
             </p>
           </div>
 
-          <div style={{
+          <div className="skills-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
             gap: '1.2rem'
@@ -78,6 +80,7 @@ export default function Skills() {
               return (
                 <div
                   key={idx}
+                  className="skill-item"
                   style={{
                     padding: '1.2rem 1.4rem',
                     borderRadius: '14px',
@@ -101,7 +104,7 @@ export default function Skills() {
                     e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  <div style={{
+                  <div className="skill-icon-box" style={{
                     width: '42px',
                     height: '42px',
                     borderRadius: '10px',
@@ -117,10 +120,10 @@ export default function Skills() {
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>
+                    <span className="skill-name" style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>
                       {skill.name}
                     </span>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                    <span className="skill-tag" style={{ fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                       Tecnología Activa
                     </span>
                   </div>
@@ -130,6 +133,50 @@ export default function Skills() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .skills-tabs-container {
+            justify-content: flex-start !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            padding-bottom: 0.8rem !important;
+            margin-bottom: 2rem !important;
+          }
+          .skills-tab-btn {
+            padding: 0.6rem 1.1rem !important;
+            font-size: 0.88rem !important;
+            flex-shrink: 0 !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .skills-card {
+            padding: 1.25rem !important;
+          }
+          .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+            gap: 0.8rem !important;
+          }
+          .skill-item {
+            padding: 0.8rem 0.9rem !important;
+            gap: 0.7rem !important;
+          }
+          .skill-icon-box {
+            width: 34px !important;
+            height: 34px !important;
+          }
+          .skill-icon-box svg {
+            width: 16px !important;
+            height: 16px !important;
+          }
+          .skill-name {
+            font-size: 0.88rem !important;
+          }
+          .skill-tag {
+            font-size: 0.7rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

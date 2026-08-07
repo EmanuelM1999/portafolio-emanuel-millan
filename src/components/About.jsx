@@ -45,12 +45,12 @@ export default function About() {
         }} className="about-grid">
 
           {/* Left: Bio card & Education */}
-          <div className="glass-card" style={{ padding: '2.5rem', position: 'relative' }}>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.2rem', color: '#fff' }}>
+          <div className="glass-card about-bio-card" style={{ padding: '2.5rem', position: 'relative' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.2rem', color: '#fff' }}>
               Creando software de alto impacto con PHP, Laravel, Vue.js y React.
             </h3>
 
-            <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1.02rem', lineHeight: 1.8 }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '1rem', lineHeight: 1.8 }}>
               {personalInfo.bio}
             </p>
 
@@ -64,7 +64,7 @@ export default function About() {
               display: 'flex',
               alignItems: 'flex-start',
               gap: '1rem'
-            }}>
+            }} className="edu-card">
               <div style={{
                 width: '40px',
                 height: '40px',
@@ -91,7 +91,7 @@ export default function About() {
               </div>
             </div>
 
-            <div style={{
+            <div className="about-footer-info" style={{
               paddingTop: '1.2rem',
               borderTop: '1px solid rgba(255, 255, 255, 0.08)',
               display: 'flex',
@@ -106,7 +106,7 @@ export default function About() {
                   <span>{personalInfo.location}</span>
                 </div>
               </div>
-              <div style={{ width: '1px', height: '30px', background: 'rgba(255, 255, 255, 0.1)' }}></div>
+              <div className="v-divider" style={{ width: '1px', height: '30px', background: 'rgba(255, 255, 255, 0.1)' }}></div>
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>Especialidad Core</div>
                 <div style={{ fontWeight: 600, color: 'var(--primary-cyan)' }}>PHP Laravel / Vue / React</div>
@@ -119,7 +119,7 @@ export default function About() {
             {highlights.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div key={idx} className="glass-card" style={{ padding: '1.8rem' }}>
+                <div key={idx} className="glass-card highlight-card" style={{ padding: '1.8rem' }}>
                   <div style={{
                     width: '48px',
                     height: '48px',
@@ -150,8 +150,27 @@ export default function About() {
 
       <style>{`
         @media (max-width: 900px) {
-          .about-grid { grid-template-columns: 1fr !important; }
-          .highlights-grid { grid-template-columns: 1fr !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .highlights-grid { grid-template-columns: 1fr !important; gap: 1.2rem !important; }
+        }
+        @media (max-width: 480px) {
+          .about-bio-card {
+            padding: 1.25rem !important;
+          }
+          .highlight-card {
+            padding: 1.25rem !important;
+          }
+          .edu-card {
+            padding: 1rem !important;
+          }
+          .about-footer-info {
+            gap: 1rem !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .v-divider {
+            display: none !important;
+          }
         }
       `}</style>
     </section>

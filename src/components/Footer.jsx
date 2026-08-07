@@ -15,7 +15,7 @@ export default function Footer() {
       position: 'relative'
     }}>
       <div className="container">
-        <div style={{
+        <div className="footer-top-row" style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           {/* Quick links */}
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.9rem' }}>
+          <div className="footer-links" style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.9rem' }}>
             <a href="#about" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Sobre Mí</a>
             <a href="#skills" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Habilidades</a>
             <a href="#experience" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Experiencia</a>
@@ -84,7 +84,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright */}
-        <div style={{
+        <div className="footer-bottom-row" style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -97,13 +97,27 @@ export default function Footer() {
           <div>
             © {new Date().getFullYear()} {personalInfo.name}. Todos los derechos reservados.
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <span>Diseñado con</span>
-            <Heart size={14} color="#ef4444" fill="#ef4444" />
-            <span>en React & CSS Moderno</span>
-          </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .footer-top-row {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 1.2rem !important;
+          }
+          .footer-links {
+            justify-content: center !important;
+            gap: 1rem !important;
+          }
+          .footer-bottom-row {
+            justify-content: center !important;
+            text-align: center !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

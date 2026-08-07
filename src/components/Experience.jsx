@@ -41,13 +41,14 @@ export default function Experience() {
           {experienceData.map((exp, idx) => (
             <div
               key={idx}
+              className="timeline-item"
               style={{
                 position: 'relative',
                 marginBottom: '3rem',
               }}
             >
               {/* Glowing Timeline Dot */}
-              <div style={{
+              <div className="timeline-dot" style={{
                 position: 'absolute',
                 left: '-2.4rem',
                 top: '0.2rem',
@@ -60,7 +61,7 @@ export default function Experience() {
               }}></div>
 
               {/* Experience Card */}
-              <div className="glass-card" style={{ padding: '2rem' }}>
+              <div className="glass-card exp-card" style={{ padding: '2rem' }}>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -70,10 +71,10 @@ export default function Experience() {
                   marginBottom: '1rem'
                 }}>
                   <div>
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.3rem' }}>
+                    <h3 className="exp-role" style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.3rem' }}>
                       {exp.role}
                     </h3>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-cyan)', fontWeight: 600, fontSize: '0.95rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-cyan)', fontWeight: 600, fontSize: '0.95rem', flexWrap: 'wrap' }}>
                       <Building2 size={16} />
                       <span>{exp.company}</span>
                       <span style={{ color: 'var(--text-dim)' }}>•</span>
@@ -130,6 +131,28 @@ export default function Experience() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .timeline-container {
+            padding-left: 1.25rem !important;
+          }
+          .timeline-dot {
+            left: -1.65rem !important;
+            width: 14px !important;
+            height: 14px !important;
+          }
+          .exp-card {
+            padding: 1.25rem !important;
+          }
+          .exp-role {
+            font-size: 1.15rem !important;
+          }
+          .timeline-item {
+            margin-bottom: 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

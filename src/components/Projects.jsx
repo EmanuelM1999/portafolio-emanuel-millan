@@ -31,7 +31,7 @@ export default function Projects() {
         </div>
 
         {/* Filter Buttons */}
-        <div style={{
+        <div className="projects-filter-container no-scrollbar" style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -39,7 +39,7 @@ export default function Projects() {
           flexWrap: 'wrap',
           marginBottom: '3rem'
         }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', fontSize: '0.9rem', marginRight: '0.5rem' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dim)', fontSize: '0.9rem', marginRight: '0.5rem', flexShrink: 0 }}>
             <Filter size={16} />
             <span>Filtrar por:</span>
           </span>
@@ -47,6 +47,7 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
+              className="filter-btn"
               style={{
                 padding: '0.5rem 1.2rem',
                 borderRadius: '10px',
@@ -57,6 +58,8 @@ export default function Projects() {
                 fontSize: '0.88rem',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
               }}
             >
               {cat}
@@ -67,13 +70,13 @@ export default function Projects() {
         {/* Projects Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
           gap: '2rem'
         }} className="projects-grid">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="glass-card"
+              className="glass-card project-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -82,7 +85,7 @@ export default function Projects() {
               }}
             >
               {/* Project Image Container with Overlay */}
-              <div style={{
+              <div className="project-img-container" style={{
                 position: 'relative',
                 height: '210px',
                 overflow: 'hidden'
@@ -135,7 +138,7 @@ export default function Projects() {
               </div>
 
               {/* Card Body */}
-              <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+              <div className="project-card-body" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginBottom: '0.6rem' }}>
                   {project.title}
                 </h3>
@@ -253,8 +256,19 @@ export default function Projects() {
         .glass-card:hover .project-img {
           transform: scale(1.05);
         }
+        @media (max-width: 768px) {
+          .projects-filter-container {
+            justify-content: flex-start !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            padding-bottom: 0.8rem !important;
+            margin-bottom: 2rem !important;
+          }
+        }
         @media (max-width: 600px) {
-          .projects-grid { grid-template-columns: 1fr !important; }
+          .projects-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+          .project-img-container { height: 180px !important; }
+          .project-card-body { padding: 1.2rem !important; }
         }
       `}</style>
     </section>

@@ -35,6 +35,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { name: 'Inicio', href: '#hero', icon: Code2, id: 'hero' },
     { name: 'Sobre Mí', href: '#about', icon: User, id: 'about' },
@@ -46,6 +54,7 @@ export default function Navbar() {
 
   return (
     <header
+      className="navbar-header"
       style={{
         position: 'fixed',
         top: 0,
@@ -53,25 +62,26 @@ export default function Navbar() {
         right: 0,
         zIndex: 1000,
         transition: 'all 0.3s ease',
-        background: scrolled ? 'rgba(8, 11, 17, 0.9)' : 'rgba(8, 11, 17, 0.4)',
+        background: scrolled ? 'rgba(8, 11, 17, 0.95)' : 'rgba(8, 11, 17, 0.6)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
-        padding: scrolled ? '1rem 0' : '1.5rem 0',
+        padding: scrolled ? '0.8rem 0' : '1.2rem 0',
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Brand Logo - Clean, Spacious & Professional */}
+        {/* Brand Logo */}
         <a
           href="#hero"
+          className="brand-logo"
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.6rem',
+            gap: '0.5rem',
             textDecoration: 'none',
             color: '#fff',
             fontWeight: 800,
-            fontSize: '1.35rem',
+            fontSize: '1.25rem',
             letterSpacing: '-0.02em'
           }}
         >
@@ -136,7 +146,7 @@ export default function Navbar() {
           className="mobile-toggle"
           aria-label="Menu"
         >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
@@ -151,14 +161,17 @@ export default function Navbar() {
             background: 'rgba(8, 11, 17, 0.98)',
             backdropFilter: 'blur(24px)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            padding: '1.8rem',
+            padding: '1.5rem 1.2rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.2rem',
+            gap: '0.5rem',
+            maxHeight: 'calc(100vh - 65px)',
+            overflowY: 'auto'
           }}
         >
           {navLinks.map((link) => {
             const Icon = link.icon;
+            const isActive = activeSection === link.id;
             return (
               <a
                 key={link.id}
@@ -169,13 +182,15 @@ export default function Navbar() {
                   alignItems: 'center',
                   gap: '0.8rem',
                   textDecoration: 'none',
-                  color: activeSection === link.id ? 'var(--primary-cyan)' : 'var(--text-main)',
-                  fontSize: '1.1rem',
+                  color: isActive ? 'var(--primary-cyan)' : 'var(--text-main)',
+                  fontSize: '1.05rem',
                   fontWeight: 600,
-                  padding: '0.6rem 0',
+                  padding: '0.8rem 1rem',
+                  borderRadius: '10px',
+                  background: isActive ? 'rgba(0, 242, 254, 0.08)' : 'transparent',
                 }}
               >
-                <Icon size={20} />
+                <Icon size={20} color={isActive ? 'var(--primary-cyan)' : 'var(--text-muted)'} />
                 {link.name}
               </a>
             );
@@ -187,6 +202,14 @@ export default function Navbar() {
         @media (max-width: 900px) {
           .desktop-nav { display: none !important; }
           .mobile-toggle { display: block !important; }
+        }
+        @media (max-width: 480px) {
+          .navbar-header {
+            padding: 0.8rem 0 !important;
+          }
+          .brand-logo {
+            font-size: 1.05rem !important;
+          }
         }
       `}</style>
     </header>
